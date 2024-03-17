@@ -2,9 +2,10 @@ spring:
   application:
     name: mix-fast-notificacao
 
-aws:
-  queue:
-    url: https://sqs.us-east-1.amazonaws.com/211125470560/mixfast-notificacao-pedido
+cloud:
+  aws:
+    sqs:
+      name: mixfast-notificacao-pedido
 
 server:
   port: 9083
