@@ -18,6 +18,8 @@
 
     <properties>
         <java.version>17</java.version>
+
+        <aws.sdk.sqs.version>2.25.11</aws.sdk.sqs.version>
     </properties>
 
     <dependencies>
@@ -31,6 +33,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- AWS SDK -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>sqs</artifactId>
+            <version>${aws.sdk.sqs.version}</version>
         </dependency>
 
         <!-- Lombok -->
