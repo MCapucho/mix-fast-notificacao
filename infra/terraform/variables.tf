@@ -36,7 +36,7 @@ variable "memory" {
 }
 variable "target_group_arn" {
   type = string
-  default = "arn:aws:elasticloadbalancing:us-east-1:211125470560:targetgroup/mixfastpagamento-target-group/9256e35da9401636"
+  default = "arn:aws:elasticloadbalancing:us-east-1:211125470560:targetgroup/mixfastnotificacao-target-group/b29ce239102b71b3"
 }
 variable "port" {
   type = number
