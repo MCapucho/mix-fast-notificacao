@@ -1,6 +1,6 @@
 FROM amazoncorretto:17
 
-ADD target/mixfastnotificacao.jar mixfast.jar
+ADD target/mixfastnotificacao.jar mixfastnotificacao.jar
 
 EXPOSE 9083
 
