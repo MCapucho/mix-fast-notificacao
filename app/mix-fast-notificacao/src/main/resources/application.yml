@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: mix-fast-notificacao
+
+server:
+  port: 9083
