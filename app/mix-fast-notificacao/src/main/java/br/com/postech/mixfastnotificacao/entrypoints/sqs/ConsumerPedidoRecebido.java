@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConsumerPedidoRecebido {
 
-    @Value("${cloud.aws.sqs.endpoint}")
-    private String queueUrl;
-
     @JmsListener(destination = "${cloud.aws.sqs.name}")
     public void consumerNotificacaoPedido(TextMessage textMessage) {
         System.out.println(textMessage);
