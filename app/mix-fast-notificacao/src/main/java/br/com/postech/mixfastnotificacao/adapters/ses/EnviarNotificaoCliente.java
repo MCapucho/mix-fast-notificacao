@@ -1,49 +1,36 @@
 package br.com.postech.mixfastnotificacao.adapters.ses;
 
 import br.com.postech.mixfastnotificacao.dto.NotificacaoRequest;
+import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
+import com.amazonaws.services.simpleemail.model.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.ses.SesClient;
-import software.amazon.awssdk.services.ses.model.*;
 
+@RequiredArgsConstructor
 @Service
 public class EnviarNotificaoCliente {
 
-    SesClient sesClient = SesClient.builder()
-            .region(Region.US_EAST_1)
-            .build();
+    private final AmazonSimpleEmailService amazonSimpleEmailService;
 
     public void enviarEmail(NotificacaoRequest notificacaoRequest) {
-        Destination destination = Destination.builder()
-                .toAddresses(notificacaoRequest.getEmailCliente())
-                .build();
-
-        Content content = Content.builder()
-                .data("Teste")
-                .build();
-
-        Content sub = Content.builder()
-                .data(String.format("Notificação Mix-Fast - Pedido nº %s", notificacaoRequest.getCodigoPedido()))
-                .build();
-
-        Body body = Body.builder()
-                .html(content)
-                .build();
-
-        Message msg = Message.builder()
-                .subject(sub)
-                .body(body)
-                .build();
-
-        SendEmailRequest emailRequest = SendEmailRequest.builder()
-                .destination(destination)
-                .message(msg)
-                .source("murylo_capucho@outlook.com")
-                .build();
-
         try {
-            sesClient.sendEmail(emailRequest);
-        } catch (SesException e) {
+            SendEmailRequest sendEmailRequest = new SendEmailRequest()
+                    .withDestination(
+                            new Destination().withToAddresses(notificacaoRequest.getEmailCliente()))
+                    .withMessage(
+                            new Message().withBody(
+                                    new Body().withHtml(
+                                            new Content()
+                                                    .withCharset("UTF-8")
+                                                    .withData("Teste")))
+                                    .withSubject(
+                                            new Content()
+                                                    .withCharset("UTF-8")
+                                                    .withData(String.format("Notificação MixFast - Pedido nº %s", notificacaoRequest.getCodigoPedido()))))
+                            .withSource("murylo_capucho@outlook.com");
+            SendEmailResult result = amazonSimpleEmailService.sendEmail(sendEmailRequest);
+            System.out.println(result.getMessageId());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

@@ -21,22 +21,9 @@
 
         <amazon-sqs-java-messaging-lib.version>2.1.2</amazon-sqs-java-messaging-lib.version>
         <aws-java-sdk-sqs.version>1.12.681</aws-java-sdk-sqs.version>
-        <aws-sdk-bom.version>2.5.5</aws-sdk-bom.version>
-        <aws-sdk-ses.version>2.25.11</aws-sdk-ses.version>
+        <aws-java-sdk-ses.version>1.12.119</aws-java-sdk-ses.version>
         <gson.version>2.10.1</gson.version>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>software.amazon.awssdk</groupId>
-                <artifactId>bom</artifactId>
-                <version>${aws-sdk-bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <!-- Spring Framework -->
@@ -75,9 +62,9 @@
         </dependency>
 
         <dependency>
-            <groupId>software.amazon.awssdk</groupId>
-            <artifactId>ses</artifactId>
-            <version>${aws-sdk-ses.version}</version>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-ses</artifactId>
+            <version>${aws-java-sdk-ses.version}</version>
         </dependency>
 
         <!-- Gson -->
