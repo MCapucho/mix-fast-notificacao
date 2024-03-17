@@ -16,7 +16,7 @@ jobs:
     name: 'Build Image - Docker'
     runs-on: ubuntu-latest
     env:
-      APP_WORKING_DIR: 'app/mix-fast'
+      APP_WORKING_DIR: 'app/mix-fast-notificacao'
 
     defaults:
       run:
@@ -54,7 +54,7 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: mixfast
+          ECR_REPOSITORY: mixfastnotificacao
           IMAGE_TAG: latest
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
