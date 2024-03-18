@@ -13,6 +13,15 @@ public class EnviarNotificaoCliente {
     private final AmazonSimpleEmailService amazonSimpleEmailService;
 
     public void enviarEmail(NotificacaoRequest notificacaoRequest) {
+        String mensagem = String.format("Código do Pedido = %s \r" +
+                "Valor Total do Pedido = %s \r" +
+                "Status do Pagamento = %s \r" +
+                "Status do Pedido = %s",
+                notificacaoRequest.getCodigoPedido(),
+                notificacaoRequest.getValorTotalPedido(),
+                notificacaoRequest.getStatusPagamento(),
+                notificacaoRequest.getStatusPedido());
+
         try {
             SendEmailRequest sendEmailRequest = new SendEmailRequest()
                     .withDestination(
@@ -22,7 +31,7 @@ public class EnviarNotificaoCliente {
                                     new Body().withHtml(
                                             new Content()
                                                     .withCharset("UTF-8")
-                                                    .withData("Teste")))
+                                                    .withData(mensagem)))
                                     .withSubject(
                                             new Content()
                                                     .withCharset("UTF-8")
