@@ -2,10 +2,12 @@ spring:
   application:
     name: mix-fast-notificacao
 
-cloud:
-  aws:
-    sqs:
-      name: mixfast-notificacao-pedido
+aws:
+  queue:
+    name:
+      pedido: mixfast-notificacao-pedido
+      aprovado: mixfast-notificacao-pedido-pagamento-aprovado
+      reprovado: mixfast-notificacao-pedido-pagamento-reprovado
 
 server:
   port: 9083
