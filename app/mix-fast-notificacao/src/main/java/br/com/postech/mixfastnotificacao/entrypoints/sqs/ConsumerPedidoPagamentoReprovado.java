@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class ConsumerPedidoRecebido {
+public class ConsumerPedidoPagamentoReprovado {
 
     private final Gson gson;
     private final EnviarNotificaoCliente enviarNotificaoCliente;
 
     @SneakyThrows
-    @JmsListener(destination = "${aws.queue.name.pedido}")
+    @JmsListener(destination = "${aws.queue.name.reprovado}")
     public void consumerNotificacaoPedido(TextMessage textMessage) {
         NotificacaoRequest notificacaoRequest = gson.fromJson(textMessage.getText(), NotificacaoRequest.class);
         System.out.println(notificacaoRequest);

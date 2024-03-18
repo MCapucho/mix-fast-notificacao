@@ -13,9 +13,9 @@ public class EnviarNotificaoCliente {
     private final AmazonSimpleEmailService amazonSimpleEmailService;
 
     public void enviarEmail(NotificacaoRequest notificacaoRequest) {
-        String mensagem = String.format("Código do Pedido = %s \r" +
-                "Valor Total do Pedido = %s \r" +
-                "Status do Pagamento = %s \r" +
+        String mensagem = String.format("Código do Pedido = %s \r\n" +
+                "Valor Total do Pedido = %s \r\n" +
+                "Status do Pagamento = %s \r\n" +
                 "Status do Pedido = %s",
                 notificacaoRequest.getCodigoPedido(),
                 notificacaoRequest.getValorTotalPedido(),
